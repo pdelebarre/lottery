@@ -1,0 +1,33 @@
+.contain {
+  align-items: center;
+  width: 80%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.2fr 1fr 1fr;
+}
+
+.searchbar {
+  align-items: top left;
+  border-bottom: 1px solid lightgrey;
+}
+
+.row {
+  overflow-x: scroll;
+  width: 100%;
+}
+
+.label {
+  padding: 10px;
+  font-size: 2em;
+}
+
+.input {
+  padding-left: 10px;
+  font-size: 1.2em;
+}
+
+.button {
+  padding: 10px;
+  border-radius: 45px;
+  width: 5em;
+}

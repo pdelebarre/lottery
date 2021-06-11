@@ -1,36 +1,49 @@
 import React, { useState } from "react";
 
+import classes from "./Parent.module.css";
+
 import Child from "./Child";
 
 const Parent = () => {
-    const [movie, setMovie]  = useState("");
+  const [query, setQuery] = useState("");
+  const [newMovie, setNewMovie] = useState({});
 
-    const handleSubmit = (event) => {
-        console.log('submit', movie);
-        alert(movie);
-        setMovie("");
-    }
-    const handleChange = (event) => {
-        setMovie(event.target.value);
-       
-    }
+  const handleSubmit = () => {
+    console.log("submit", newMovie);
+    //alert(movie);
+    setNewMovie({});
+    setQuery("");
+  };
+  const handleChange = (event) => {
+    setQuery(event.target.value);
+  };
 
-    const onDropdownHandler = (data) => {
-        console.log("received from child", data);
-    }
+  const onDropdownHandler = (movie) => {
+    setNewMovie(movie);
+    console.log("received from child", newMovie);
+  };
 
-    return (
-        <>
-        <form onSubmit = {handleSubmit} >
-            <label > Movie:
-            <input type = "text" value = {movie} onChange={handleChange}/>
-            </label>
-            <input type = "submit" value = "OK" />
-            
+  return (
+    <div className={classes.contain}>
+      <div className={classes.searchbar}>
+        <form onSubmit={handleSubmit}>
+          <label className={classes.label}>
+            Movie:
+            <input className={classes.input} type="text" value={query} onChange={handleChange} />
+          </label>
+          <input className={classes.button} type="submit" value="OK" />
         </form>
-       { movie && <Child onDropdownHandler = {onDropdownHandler} query={movie}/>}
-</>
-        );
+      </div>
+
+      <div className={classes.row}>
+        {query && <Child onDropdownHandler={onDropdownHandler} query={query} />}
+      </div>
+
+      <div className={classes.row}>
+          FAVORITES
+      </div>
+    </div>
+  );
 };
 
 export default Parent;
